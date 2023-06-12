@@ -1,0 +1,17 @@
+:root{
+  --color-blue: #409EFF;
+  --color-success: #67C23A;
+  --color-warning: #E6A23C;
+  --color-danger: #F56C6C;
+  --color-info: #909399;
+  --color-primary-text: #303133;
+  --color-regular-text: #606266;
+  --color-secondary-text: #909399;
+  --color-placeholder-text: #C0C4CC;
+  --color-base-border: #DCDFE6;
+  --color-light-border: #E4E7ED;
+  --color-lighter-border: #EBEEF5;
+  --color-extra-light-border: #F2F6FC;
+
+  --font-size: 14px;
+}

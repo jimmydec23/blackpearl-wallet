@@ -1,0 +1,49 @@
+{
+  "message": "hello i18n !!",
+  "common": {
+    "cancel": "Cancel",
+    "sure": "Sure"
+  },
+  "nav": {
+    "login": "Login",
+    "other": "Other"
+  },
+  "balance": {
+    "balance": "Balance",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "token": "Token",
+    "wallet": "Wallet",
+    "gamma": "Gamma",
+    "desc1": "Make sure",
+    "desc2": "is the token you actually want to trade. Multiple tokens can share the same name.",
+    "amount": "Amount"
+  },
+  "buySell": {
+    "buySell": "Buy/Sell",
+    "buyOrder": "Buy Order",
+    "sellOrder": "Sell Order",
+    "buyAmount": "Amount to buy",
+    "sellAmount": "Amount to sell",
+    "price": "Price",
+    "total": "Total",
+    "expires": "Expires",
+    "blocks": "Blocks"
+  },
+  "orderBook": {
+    "orderBook": "Order Book",
+    "order": "order"
+  },
+  "priceChart": {
+    "priceChart": "Price Chart"
+  },
+  "yourTx": {
+    "yourTx": "Your Transactions"
+  },
+  "tradeVolumn": {
+    "tradeVolumn": "Trade & Volumn"
+  },
+  "updates": {
+    "updates": "Updates"
+  }
+}

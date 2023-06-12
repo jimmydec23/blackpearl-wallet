@@ -1,0 +1,49 @@
+{
+  "message": "你好 i18n !!",
+  "common": {
+    "cancel": "取消",
+    "sure": "确定"
+  },
+  "nav": {
+    "login": "登录",
+    "other": "其他"
+  },
+  "balance": {
+    "balance": "余额",
+    "deposit": "存款",
+    "withdraw": "取款",
+    "token": "代币",
+    "wallet": "钱包",
+    "gamma": "Gamma",
+    "desc1": "请确认",
+    "desc2": "是您要交易的代币。不同的代币可以取相同的名字",
+    "amount": "数量"
+  },
+  "buySell":{
+    "buySell": "买/卖",
+    "buyOrder": "买单",
+    "sellOrder": "卖单",
+    "buyAmount": "购买数量",
+    "sellAmount": "出售数量",
+    "price": "价格",
+    "total": "总价",
+    "expires": "过期",
+    "blocks": "区块"
+  },
+  "orderBook": {
+    "orderBook": "挂单",
+    "order": "挂单"
+  },
+  "priceChart": {
+    "priceChart": "价格图表"
+  },
+  "yourTx": {
+    "yourTx": "您的交易"
+  },
+  "tradeVolumn": {
+    "tradeVolumn": "交易与交易量"
+  },
+  "updates": {
+    "updates": "最新消息"
+  }
+}
