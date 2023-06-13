@@ -6,7 +6,7 @@
     width="450px"
     :before-close="hide"
   >
-    <div slot="title">添加账户</div>
+    <div slot="title">添加账号</div>
     <template v-if="!finished">
       <el-form ref="form" class="add-form" label-width="100px">
         <el-form-item prop="name" label="名称:">

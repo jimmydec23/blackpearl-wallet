@@ -94,8 +94,7 @@ export default Vue.extend({
     display: flex;
     overflow: hidden;
     &-leftWrap {
-      padding: 20px 0;
-      transform: skewY(5deg);
+      padding: 32px 0 8px 0;
       height: 100%;
       overflow-y: auto;
       width: 300px;
