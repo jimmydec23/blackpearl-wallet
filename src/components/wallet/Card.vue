@@ -225,7 +225,11 @@ export default Vue.extend({
 
       const input = this.currentCoin.isToken
         ? visitor.genErc20Input(
-            this.currentNet.label,
+            {
+              name: this.currentNet.label,
+              netId: this.currentNet.netId,
+              chainId: this.currentNet.netId
+            },
             this.currentAcc.privateKey,
             this.txForm.to,
             value,
@@ -234,7 +238,11 @@ export default Vue.extend({
             nonce
           )
         : visitor.genEthInput(
-            this.currentNet.label,
+            {
+              name: this.currentNet.label,
+              netId: this.currentNet.netId,
+              chainId: this.currentNet.netId
+            },
             this.currentAcc.privateKey,
             this.txForm.to,
             value,

@@ -18,12 +18,12 @@
         </el-select>
       </el-form-item>
       <el-form-item label="切换网络:">
-        <el-select v-model="form.netID">
+        <el-select v-model="form.netId">
           <el-option
             v-for="item in networks"
-            :key="item.netID"
+            :key="item.netId"
             :label="item.name"
-            :value="item.netID"
+            :value="item.netId"
           />
         </el-select>
       </el-form-item>
@@ -54,7 +54,7 @@ import { BIP32Node } from "@/scripts/wallet/bip32Node";
 interface IData {
   visible: boolean;
   form: {
-    netID: number;
+    netId: number;
     code: string;
     accIndex: number;
   };
@@ -65,7 +65,7 @@ export default Vue.extend({
     return {
       visible: false,
       form: {
-        netID: 0,
+        netId: 0,
         code: "",
         accIndex: 0
       }
@@ -82,7 +82,7 @@ export default Vue.extend({
 
     coins: function(): ICoin[] {
       const selectedNetwork: INetwork = this.networks.find((el: INetwork) => {
-        return el.netID === this.form.netID;
+        return el.netId === this.form.netId;
       });
       if (selectedNetwork) {
         return selectedNetwork.coins;
@@ -101,7 +101,7 @@ export default Vue.extend({
   },
 
   created() {
-    this.form.netID = this.currentNet.netID;
+    this.form.netId = this.currentNet.netId;
     this.form.code = this.currentCoin.code;
     this.form.accIndex = this.accounts.findIndex((el: BIP32Node) => {
       return el.address === this.currentAcc.address;
@@ -116,7 +116,7 @@ export default Vue.extend({
     },
     sure() {
       const selectedNetwork = this.networks.find((el: INetwork) => {
-        return el.netID === this.form.netID;
+        return el.netId === this.form.netId;
       });
       const selectedCoin = this.coins.find((el: ICoin) => {
         return el.code === this.form.code;

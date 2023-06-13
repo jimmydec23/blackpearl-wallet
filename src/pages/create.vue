@@ -206,7 +206,7 @@ export default Vue.extend({
       wallet.mnemonic = this.mnemonicRaw;
       this.$db.setWallet(wallet);
       this.encrypting = false;
-      this.$router.push({ path: "/wallet" });
+      this.$router.push({ path: "/" });
     }
   }
 });

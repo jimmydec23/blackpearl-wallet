@@ -18,7 +18,7 @@ export class Wallet extends PluginApp {
   get networks(): INetwork[] {
     const nets = [
       {
-        netID: 1,
+        netId: 1,
         name: "Main Ethereum Network",
         label: "mainnet",
         color: "darkseagreen",
@@ -40,11 +40,19 @@ export class Wallet extends PluginApp {
         ]
       },
       {
-        netID: 11155111,
+        netId: 11155111,
         name: "Sepolia Test Network",
         label: "sepolia",
         color: "palevioletred",
         url: "https://sepolia.infura.io/v3/9f28b75fa35c4dc2ae401196993494f5",
+        coins: [{ code: "ETH", address: "", isToken: false, decimals: 18 }]
+      },
+      {
+        netId: 31337,
+        name: "HardHat Node",
+        label: "mainnet",
+        color: "palevioletred",
+        url: "http://127.0.0.1:8545",
         coins: [{ code: "ETH", address: "", isToken: false, decimals: 18 }]
       }
     ];
@@ -54,7 +62,7 @@ export class Wallet extends PluginApp {
   loadWallet() {
     const wallet = this.$db.getWallet();
     if (!wallet) {
-      this.$router.push({ path: "/wallet/create" });
+      this.$router.push({ path: "/create" });
       return;
     }
 

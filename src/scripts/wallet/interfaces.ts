@@ -6,7 +6,7 @@ export interface ICoin {
 }
 
 export interface INetwork {
-  netID: number;
+  netId: number;
   name: string;
   label: string;
   color: string;
@@ -20,11 +20,17 @@ export interface ISignTxOutput {
 }
 
 export interface ISignTxInput {
-  chain: string;
+  chain: IChain;
   privKey: Buffer;
   to: string;
   value: number;
   gasPrice: number;
   nonce: number;
   data: string;
+}
+
+export interface IChain {
+  name: string;
+  netId: number;
+  chainId: number;
 }

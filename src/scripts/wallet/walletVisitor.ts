@@ -1,7 +1,12 @@
 import { Visitor } from "@/scripts/web3/visitor";
 import ERC20ABI from "@/assets/contracts/Erc20ABI.json";
 import { Transaction } from "ethereumjs-tx";
-import { ISignTxInput, ISignTxOutput } from "@/scripts/wallet/interfaces";
+import Common from "ethereumjs-common";
+import {
+  IChain,
+  ISignTxInput,
+  ISignTxOutput
+} from "@/scripts/wallet/interfaces";
 import BigNumber from "bignumber.js";
 
 class WalletVisitor extends Visitor {
@@ -13,7 +18,7 @@ class WalletVisitor extends Visitor {
   }
 
   public genEthInput(
-    chain: string,
+    chain: IChain,
     privKey: Buffer,
     to: string,
     value: BigNumber,
@@ -34,7 +39,7 @@ class WalletVisitor extends Visitor {
   }
 
   public genErc20Input(
-    chain: string,
+    chain: IChain,
     privKey: Buffer,
     to: string,
     value: BigNumber,
@@ -59,6 +64,15 @@ class WalletVisitor extends Visitor {
   }
 
   public signTx(input: ISignTxInput): ISignTxOutput {
+    const chainInfo = Common.forCustomChain(
+      "mainnet",
+      {
+        name: input.chain.name,
+        networkId: input.chain.netId,
+        chainId: input.chain.netId
+      },
+      "petersburg"
+    );
     const tx = new Transaction(
       {
         to: input.to,
@@ -68,7 +82,7 @@ class WalletVisitor extends Visitor {
         data: input.data,
         gasLimit: this.gasLimit
       },
-      { chain: input.chain }
+      { common: chainInfo }
     );
     tx.sign(input.privKey);
     const signData = "0x" + tx.serialize().toString("hex");
