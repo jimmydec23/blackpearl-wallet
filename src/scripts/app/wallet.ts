@@ -40,35 +40,11 @@ export class Wallet extends PluginApp {
         ]
       },
       {
-        netID: 2,
-        name: "Ropsten Test Network",
-        label: "ropsten",
+        netID: 11155111,
+        name: "Sepolia Test Network",
+        label: "sepolia",
         color: "palevioletred",
-        url: "https://ropsten.infura.io/v3/9f28b75fa35c4dc2ae401196993494f5",
-        coins: [
-          { code: "ETH", address: "", isToken: false, decimals: 18 },
-          {
-            code: "GTM",
-            address: "0xD5d3B39Bd6259579fB6885D69789aB05dC895Fc7",
-            isToken: true,
-            decimals: 18
-          }
-        ]
-      },
-      {
-        netID: 3,
-        name: "Kovan Test Network",
-        label: "kovan",
-        color: "blueviolet",
-        url: "https://kovan.infura.io/v3/9f28b75fa35c4dc2ae401196993494f5",
-        coins: [{ code: "ETH", address: "", isToken: false, decimals: 18 }]
-      },
-      {
-        netID: 4,
-        name: "Rinkeby Test Network",
-        label: "rinkeby",
-        color: "orange",
-        url: "https://rinkeby.infura.io/v3/9f28b75fa35c4dc2ae401196993494f5",
+        url: "https://sepolia.infura.io/v3/9f28b75fa35c4dc2ae401196993494f5",
         coins: [{ code: "ETH", address: "", isToken: false, decimals: 18 }]
       }
     ];

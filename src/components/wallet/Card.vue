@@ -260,7 +260,12 @@ export default Vue.extend({
     },
 
     detail(address: string) {
-      const url: string = `https://cn.etherscan.com/address/${address}`;
+      var url: string = "";
+      if (this.currentNet.label == "sepolia") {
+        url = `https://sepolia.otterscan.io/address/${address}`;
+      } else {
+        url = `https://cn.etherscan.com/address/${address}`;
+      }
       window.open(url, "_blank");
     }
   }
