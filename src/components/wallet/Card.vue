@@ -70,7 +70,13 @@
         <span v-if="signTxs.length === 0">暂无交易信息</span>
         <div v-else v-for="(item, index) in signTxs" :key="index">
           <span>{{ item.txHash }}</span>
-          <el-tag v-if="isTxConfirm(item.txHash)">已确认</el-tag>
+          <el-tag
+            v-if="isTxConfirm(item.txHash)"
+            size="mini"
+            effect="plain"
+            type="info"
+            >已确认</el-tag
+          >
           <i v-else class="el-icon-loading"></i>
         </div>
       </div>
@@ -255,7 +261,6 @@ export default Vue.extend({
       const signedTx = visitor.signTx(input);
 
       try {
-        this.sending = true;
         const receipt = await visitor.web3.eth.sendSignedTransaction(
           signedTx.signData
         );
@@ -266,12 +271,12 @@ export default Vue.extend({
         if (error instanceof Error) {
           msg = error.message;
         }
-        this.sending = false;
         this.$alert(msg, "Send signed tx", {
           confirmButtonText: "OK"
         });
         console.error("send signed tx error:", error);
       }
+      this.sending = false;
     },
 
     isTxConfirm(tx: string): boolean {
@@ -296,9 +301,9 @@ export default Vue.extend({
 
 <style lang="postcss" scoped>
 .ca {
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   &-block {
-    padding: 20px 10px;
+    padding: 15px 10px;
     position: relative;
     margin-top: 20px;
     background: seagreen;
@@ -394,7 +399,7 @@ export default Vue.extend({
     animation: slidein 0.2s;
 
     &-list {
-      height: 30px;
+      height: 80px;
       overflow-y: overlay;
       & > div {
         color: whitesmoke;
