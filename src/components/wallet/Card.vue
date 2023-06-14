@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="ca-tran ca-block ca-stick" v-show="open">
-      <el-form :model="txForm" label-width="80px">
+      <el-form :model="txForm" label-width="80px" label-position="left">
         <el-form-item label="发送方:" prop="from">
           <el-input v-model="txForm.from" :readonly="true"></el-input>
         </el-form-item>
@@ -44,7 +44,7 @@
             <span slot="append">{{ currentCoin.code }}</span>
           </el-input>
         </el-form-item>
-        <el-form-item label="GasPrice:">
+        <el-form-item label="Gas Price:">
           <el-input :readonly="true" :value="gasPrice | toGwei">
             <i
               slot="append"
