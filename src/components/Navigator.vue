@@ -93,11 +93,11 @@ export default Vue.extend({
 }
 
 .selected {
-  color: var(--color-success);
+  color: var(--color-block);
   position: relative;
   &::after {
     content: "";
-    background: var(--color-success);
+    background: var(--color-block);
     position: absolute;
     bottom: 0;
     width: 50%;

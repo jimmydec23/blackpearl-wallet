@@ -3,8 +3,9 @@
     <div class="ca-card ca-block">
       <div class="ca-card-addr">
         <span>地址:</span>
-        <span>{{ currentAcc.checksumAddress }}</span>
-        <span @click="detail(currentAcc.checksumAddress)">详情</span>
+        <span @click="detail(currentAcc.checksumAddress)">{{
+          currentAcc.checksumAddress
+        }}</span>
       </div>
       <div class="ca-card-balance">
         <span>余额:</span>
@@ -21,7 +22,7 @@
         <span>转账:</span>
         <el-switch
           class="ca-card-switch__open"
-          active-color="gold"
+          active-color="#ebbf58"
           v-model="open"
           @change="handleSwitch"
         ></el-switch>
@@ -55,7 +56,7 @@
         </el-form-item>
         <el-form-item>
           <el-button
-            type="primary"
+            type="warning"
             :disabled="!allFill"
             @click="handleSure"
             :loading="sending"
@@ -65,11 +66,13 @@
       </el-form>
     </div>
     <div class="ca-tx ca-block ca-stick" v-show="open">
-      <span v-if="signTxs.length === 0">暂无交易信息</span>
-      <div v-else v-for="(item, index) in signTxs" :key="index">
-        <span>{{ item.txHash }}</span>
-        <el-tag v-if="isTxConfirm(item.txHash)">已确认</el-tag>
-        <i v-else class="el-icon-loading"></i>
+      <div class="ca-tx-list">
+        <span v-if="signTxs.length === 0">暂无交易信息</span>
+        <div v-else v-for="(item, index) in signTxs" :key="index">
+          <span>{{ item.txHash }}</span>
+          <el-tag v-if="isTxConfirm(item.txHash)">已确认</el-tag>
+          <i v-else class="el-icon-loading"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -250,14 +253,25 @@ export default Vue.extend({
             nonce
           );
       const signedTx = visitor.signTx(input);
-      this.signTxs.unshift(signedTx);
 
-      const receipt = await visitor.web3.eth.sendSignedTransaction(
-        signedTx.signData
-      );
-      this.receipts.push(receipt);
-
-      this.sending = false;
+      try {
+        this.sending = true;
+        const receipt = await visitor.web3.eth.sendSignedTransaction(
+          signedTx.signData
+        );
+        this.signTxs.unshift(signedTx);
+        this.receipts.push(receipt);
+      } catch (error) {
+        var msg: string = "";
+        if (error instanceof Error) {
+          msg = error.message;
+        }
+        this.sending = false;
+        this.$alert(msg, "Send signed tx", {
+          confirmButtonText: "OK"
+        });
+        console.error("send signed tx error:", error);
+      }
     },
 
     isTxConfirm(tx: string): boolean {
@@ -288,7 +302,6 @@ export default Vue.extend({
     position: relative;
     margin-top: 20px;
     background: seagreen;
-    border-radius: 10px;
     width: 450px;
     min-height: 10px;
     color: whitesmoke;
@@ -301,8 +314,8 @@ export default Vue.extend({
       content: "";
       width: 10px;
       height: 20px;
-      border-left: 10px solid chocolate;
-      border-right: 10px solid chocolate;
+      border-left: 10px solid var(--color-stick);
+      border-right: 10px solid var(--color-stick);
     }
   }
   &-card {
@@ -315,19 +328,16 @@ export default Vue.extend({
       color: whitesmoke;
       span {
         &:nth-child(1) {
-          font-size: 18px;
           letter-spacing: 2px;
-          font-weight: 600;
         }
         &:nth-child(2) {
+          font-weight: bold;
           margin-left: 30px;
-          color: gold;
-        }
-        &:nth-child(3) {
-          margin-left: 10px;
+          color: var(--color-balance);
           cursor: pointer;
+        }
+        &:nth-child(2):hover {
           text-decoration: underline;
-          color: deepskyblue;
         }
       }
     }
@@ -338,19 +348,15 @@ export default Vue.extend({
       align-items: flex-end;
       span {
         &:nth-child(1) {
-          font-weight: 600;
-          font-size: 18px;
           letter-spacing: 2px;
         }
         &:nth-child(2) {
           margin-left: 30px;
           font-size: 20px;
-          color: gold;
-          text-decoration: underline;
-          font-style: italic;
+          font-weight: bold;
+          color: var(--color-balance);
         }
         &:nth-child(3) {
-          font-size: 12px;
           margin-left: 10px;
         }
       }
@@ -364,8 +370,6 @@ export default Vue.extend({
       margin-top: 10px;
       span {
         &:nth-child(1) {
-          font-weight: 600;
-          font-size: 18px;
           letter-spacing: 2px;
         }
       }
@@ -389,25 +393,39 @@ export default Vue.extend({
   &-tx {
     animation: slidein 0.2s;
 
-    & > div {
-      color: whitesmoke;
-      padding: 5px 0;
-      display: flex;
-      align-items: center;
-      span {
-        &:nth-child(1) {
-          display: inline-block;
-          width: 300px;
-          overflow: hidden;
-          margin-left: 10px;
-          text-overflow: ellipsis;
-        }
-        &:nth-child(2) {
-          margin-left: 10px;
+    &-list {
+      height: 30px;
+      overflow-y: overlay;
+      & > div {
+        color: whitesmoke;
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        span {
+          &:nth-child(1) {
+            display: inline-block;
+            width: 300px;
+            overflow: hidden;
+            margin-left: 10px;
+            text-overflow: ellipsis;
+          }
+          &:nth-child(2) {
+            margin-left: 10px;
+          }
         }
       }
     }
   }
+}
+
+.ca-tx-list::-webkit-scrollbar {
+  width: 3px;
+}
+.ca-tx-list::-webkit-scrollbar-track {
+}
+.ca-tx-list::-webkit-scrollbar-thumb {
+  background: var(--color-balance);
+  border-radius: 20%;
 }
 
 @keyframes slidein {
