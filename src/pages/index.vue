@@ -1,5 +1,5 @@
 <template>
-  <div class="wallet">
+  <div class="wallet" v-if="currentAcc">
     <div class="wallet-main">
       <div class="wallet-main-leftWrap">
         <div class="wallet-main-left">

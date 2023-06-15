@@ -14,7 +14,6 @@ export class DB {
     this.db.defaults(dbDefault);
   }
 
-
   public setWallet(wallet: Wallet) {
     this.db.set("wallet", wallet).write();
   }

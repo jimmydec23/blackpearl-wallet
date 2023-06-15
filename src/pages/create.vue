@@ -60,6 +60,7 @@
             <el-input
               v-model="formData.passwd"
               placeholder="请输入密码"
+              show-password
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -287,13 +288,13 @@ export default Vue.extend({
     }
     &-op {
       width: 300px;
-      margin-left: 10px;
+      margin: 70px 0 0 30px;
+      padding: 5px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       background: rgba(0, 0, 0, 0.5);
-      padding: 5px 0;
       &-row {
         display: flex;
         flex-wrap: wrap;
