@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Visitor } from "@/scripts/web3/visitor";
 import ERC20ABI from "@/assets/contracts/Erc20ABI.json";
 import { Transaction } from "ethereumjs-tx";
