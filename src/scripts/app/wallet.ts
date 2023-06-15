@@ -11,8 +11,6 @@ export class Wallet extends PluginApp {
     }
 
     this.loadWallet();
-
-    this.hasInit = true;
   }
 
   get networks(): INetwork[] {
@@ -88,5 +86,7 @@ export class Wallet extends PluginApp {
     this.$store.commit("wallet/setCurrentCoin", currentCoin);
     this.$store.commit("wallet/setNetworks", this.networks);
     this.$store.commit("wallet/setCurrentNet", currentNet);
+    // mark wallet loaed
+    this.hasInit = true;
   }
 }

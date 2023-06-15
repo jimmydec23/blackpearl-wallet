@@ -1,6 +1,8 @@
 # Black Pearl Wallet
 An ethereum blockchain wallet.
 
+![demo](src/assets/demo.gif)
+
 ## Run the app
 * yarn serve
 * visit http://localhost:8080/
